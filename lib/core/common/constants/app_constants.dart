@@ -1,5 +1,10 @@
-import 'package:cinema_app/core/common/enums/genre.dart';
+import '../enums/genre.dart';
 
+const image780BaseUrl = 'https://image.tmdb.org/t/p/w780';
+const image500BaseUrl = 'https://image.tmdb.org/t/p/w500';
+const image185BaseUrl = 'https://image.tmdb.org/t/p/w185';
+const noPosterImageUrl =
+    'https://www.csaff.org/wp-content/uploads/csaff-no-poster.jpg';
 const genreIdsConstMap = {
   28: Genre.action,
   12: Genre.adventure,
@@ -21,3 +26,9 @@ const genreIdsConstMap = {
   10752: Genre.war,
   37: Genre.western,
 };
+const viStringCode = 'vi';
+const enStringCode = 'en';
+const viPairStringCode = 'vi-VN';
+const enPairStringCode = 'en-US';
+const indexVideoType = ['Trailer', 'Teaser'];
+const cities = ['Hồ Chí Minh', 'Hà Nội', ' Đà Nẵng'];

@@ -3,9 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/common/model/bloc_status_state.dart';
-import '../../../../main.dart';
-import '../../data/datasource/remote/movie_detail_rest_api.dart';
-import '../../domain/repo/movie_detail_repository.implement.dart';
 import '../../domain/usecases/movie_detail_usecases.dart';
 import '../../domain/usecases/movie_detail_usecases.implement.dart';
 import 'movie_detail_event.dart';

@@ -1,3 +1,3 @@
 class LoginRoute {
-  static const String screenName = '/login';
+  static const String RouteName = '/login';
 }

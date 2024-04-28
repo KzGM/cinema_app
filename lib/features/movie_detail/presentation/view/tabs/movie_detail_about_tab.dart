@@ -1,7 +1,9 @@
+import 'package:cinema_app/core/common/constants/assets.dart';
+import 'package:cinema_app/core/common/widget/customize_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../../../core/common/widget/customize_button.dart';
 import '../../../../../core/utils/date_utils.dart';
 import '../../../../../core/utils/double_utils.dart';
 import '../../../../../core/utils/int_utils.dart';
@@ -26,18 +28,39 @@ class _AboutTabWidgetState extends State<AboutTabWidget>
 
   TextTheme get _textTheme => theme.textTheme;
   ColorScheme get _colorScheme => theme.colorScheme;
-  late YoutubePlayerController youtubeController;
+  late YoutubePlayerController _ytbController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    print('Call init state');
+    if (widget.movieDetailEntity?.youtubeUrl != null) {
+      _youtubeInit();
+    }
+  }
+
+  @override
+  void dispose() {
+    _ytbController.dispose();
+    super.dispose();
+  }
+
+  void _youtubeInit() {
+    final initVideoID =
+        YoutubePlayer.convertUrlToId(widget.movieDetailEntity!.youtubeUrl!);
+    _ytbController = YoutubePlayerController(
+        initialVideoId: initVideoID ?? "",
+        flags: const YoutubePlayerFlags(autoPlay: false, mute: false));
   }
 
   @override
   void didUpdateWidget(covariant AboutTabWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('Call Did update widget');
+    if (widget.movieDetailEntity?.youtubeUrl !=
+        oldWidget.movieDetailEntity?.youtubeUrl) {
+      _ytbController.dispose();
+    }
+    if (widget.movieDetailEntity?.youtubeUrl != null) {
+      _youtubeInit();
+    }
   }
 
   @override
@@ -45,18 +68,6 @@ class _AboutTabWidgetState extends State<AboutTabWidget>
     super.build(context);
     final width = MediaQuery.of(context).size.width;
     theme = Theme.of(context);
-    youtubeController = YoutubePlayerController(
-      // initialVideoId: widget.movieDetailEntity?.youtubeUrl ?? '',
-      initialVideoId: 'XeDbyVODQ5M',
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-        loop: true,
-        mute: false,
-        hideControls: false,
-        controlsVisibleAtStart: true,
-        showLiveFullscreenButton: false,
-      ),
-    );
     return Column(
       children: [
         Expanded(
@@ -95,12 +106,10 @@ class _AboutTabWidgetState extends State<AboutTabWidget>
                                 print('Mở app youtube');
                               },
                               child: SizedBox(
-                                width: 48,
-                                height: 48,
-                                child: Image.network(
-                                  'https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png',
-                                ),
-                              ),
+                                  width: 48,
+                                  height: 48,
+                                  child: SvgPicture.asset(
+                                      Assets.images.icYTBLogo)),
                             ),
                           ],
                           progressIndicatorColor: Colors.red,
@@ -110,7 +119,7 @@ class _AboutTabWidgetState extends State<AboutTabWidget>
                             bufferedColor: Colors.grey,
                             handleColor: Colors.grey,
                           ),
-                          controller: youtubeController,
+                          controller: _ytbController,
                         )
                       : const SizedBox(),
                 ),
@@ -182,8 +191,8 @@ class _AboutTabWidgetState extends State<AboutTabWidget>
         Container(
           color: _colorScheme.surface.withOpacity(0.7),
           padding: const EdgeInsets.all(16),
-          child: CustomizeButton(
-            onPress: () {},
+          child: CustomizedButton(
+            onTap: () {},
             text: translate(context).selectSessions,
             backgroundColor: _colorScheme.primary,
           ),

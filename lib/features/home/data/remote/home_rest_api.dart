@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../model/movie_list_response.dart';
+import '../models/movie_response.dart';
 
 part 'home_rest_api.g.dart';
 
@@ -10,7 +10,8 @@ abstract class HomeRestApi {
   factory HomeRestApi(Dio dio, {String baseUrl}) = _HomeRestApi;
 
   @GET('/movie/now_playing')
-  Future<MovieListResponse> getNowPlayingMovies(
-    @Query('language') String? language,
+  Future<MovieResponse> getUpcomingMovies(
+    @Query('language') String language,
+    @Query('page') String page,
   );
 }

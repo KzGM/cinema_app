@@ -1,42 +1,53 @@
 import 'package:flutter/material.dart';
 
-class CustomizeButton extends StatelessWidget {
-  Function() onPress;
-  TextStyle? textStyle;
-  String? text;
-  Color? backgroundColor;
-  double? borderRadius;
-  CustomizeButton({
-    Key? key,
-    required this.onPress,
-    this.textStyle,
-    this.text,
+class CustomizedButton extends StatelessWidget {
+  final Color? backgroundColor;
+  final Color? textColor;
+  final TextStyle? textStyle;
+  final String? text;
+  final Function() onTap;
+  final double? borderRadius;
+  final Widget? child;
+  final double? height;
+  const CustomizedButton({
+    super.key,
     this.backgroundColor,
+    this.textColor,
+    this.textStyle,
+    required this.onTap,
+    this.text,
     this.borderRadius,
-  }) : super(key: key);
+    this.child,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return ElevatedButton(
-      onPressed: onPress,
-      style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(
-          backgroundColor ?? theme.colorScheme.primary,
+    return SizedBox(
+      height: height ?? 50,
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            return backgroundColor;
+          }),
+          overlayColor: MaterialStateProperty.resolveWith((states) {
+            return Colors.white.withOpacity(0.2);
+          }),
+          shape: MaterialStateProperty.resolveWith((states) {
+            return RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 8),
+            );
+          }),
         ),
-        shape: MaterialStatePropertyAll(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 8),
-          ),
+        child: Center(
+          child: child ??
+              Text(
+                text ?? 'Button',
+                style: textStyle ?? theme.textTheme.titleMedium,
+              ),
         ),
-      ),
-      child: Text(
-        text ?? 'Nhập title',
-        style: textStyle ??
-            TextStyle(
-              color: theme.colorScheme.onBackground,
-              fontWeight: FontWeight.bold,
-            ),
       ),
     );
   }

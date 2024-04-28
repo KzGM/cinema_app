@@ -45,5 +45,13 @@
     "areYouSureYouWantToChangeLanguage": "Bạn có chắc bạn muốn đổi ngôn ngữ không?",
     "areYouSureYouWantToSignOut": "Bạn có chắc bạn muốn đăng xuất không?",
     "delete": "Xóa",
-    "movieDetail": "Thông tin về phim"
+    "movieDetail": "Thông tin về phim",
+    "payForTicket": "Xác nhận mua vé",
+    "cinema": "Rạp",
+    "date": "Thời gian",
+    "runtime": "Thời lượng",
+    "seats": "Ghế",
+    "adult": "Người lớn",
+    "total": "Tổng",
+    "areYouSureYouWantToBuyThisTicket": "Bạn có chắc chắn muốn mua vé này không?"
 }

@@ -8,7 +8,7 @@ part of 'movie_video_response.dart';
 
 MovieVideoReponse _$MovieVideoReponseFromJson(Map<String, dynamic> json) =>
     MovieVideoReponse(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       results: (json['results'] as List<dynamic>?)
           ?.map((e) => MovieVideo.fromJson(e as Map<String, dynamic>))
           .toList(),

@@ -7,11 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/common/constants/assets.dart';
 import '../../../../core/common/model/bloc_status_state.dart';
 import '../../../../core/utils/localizations.dart';
-import '../../../movie_detail/domain/entities/movie_detail_entity.dart';
 import '../../../movie_detail/presentation/bloc/movie_detail_event.dart';
-import '../../domain/usecases/movie_detail_usecases.implement.dart';
 import '../bloc/movie_detail_bloc.dart';
-import '../bloc/movie_detail_event.dart';
 import '../bloc/movie_detail_state.dart';
 import 'tabs/movie_detail_about_tab.dart';
 import 'tabs/movie_session_tab.dart';
@@ -40,26 +37,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   void initState() {
     super.initState();
     bloc.add(GetMovieDetailEvent(movieId: widget.movieId));
-
-    // Mock
-    // Future.delayed(Duration.zero, () {
-    //   bloc.add(
-    //     GetMovieDetailEvent(
-    //       id: widget.movieId,
-    //       languageCode: Localizations.localeOf(context).languageCode,
-    //     ),
-    //   );
-    // });
-    // youtubeController = YoutubePlayerController(
-    //   initialVideoId: '',
-    //   flags: const YoutubePlayerFlags(
-    //     autoPlay: false,
-    //     mute: false,
-    //     hideControls: false,
-    //     controlsVisibleAtStart: true,
-    //     showLiveFullscreenButton: false,
-    //   ),
-    // );
   }
 
   @override
@@ -79,9 +56,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             message: state.errorMessage,
             title: translate(context).error,
           );
-        } else if (state.status == BlocStatusState.success) {
-          // Show snackbar, show toast.
-        }
+        } else if (state.status == BlocStatusState.success) {}
       },
       child: DefaultTabController(
         length: 2,

@@ -10,4 +10,9 @@ class UsernameLoginEvent extends LoginEvent {
   });
 }
 
-class ThirdPartyLoginEvent extends LoginEvent {}
+class ThirdPartyLoginEvent extends LoginEvent {
+  bool isGoogle;
+  ThirdPartyLoginEvent({
+    required this.isGoogle,
+  });
+}

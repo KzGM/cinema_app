@@ -11,11 +11,9 @@ class MovieDetailUsecasesImplement extends MovieDetailUsecases {
   final MovieDetailRepository _repo = MovieDetailRepositoryImplement();
   @override
   Future<MovieDetailEntity> getMovieDetail(String movieId) async {
-    // Convert Model -> Entity
     final movieModel = await _repo.getMovieDetail(movieId);
     final movieVideoReponse = await _repo.getMovieVideos(movieId);
     final movieVideos = movieVideoReponse.results;
-    // filter  // filter. Youtube && (Trailer || Teaser) && official
 
     final officialTrailer = movieVideos
         ?.where(
@@ -38,11 +36,10 @@ class MovieDetailUsecasesImplement extends MovieDetailUsecases {
       runtime: movieModel.runtime,
       countries: movieModel.productionCountries
           ?.where((element) => element.name != null)
-          .map((e) => e.name as String) // avoid crash when parse
+          .map((e) => e.name as String)
           .toList(),
       youtubeName: officialTrailer?.name,
       youtubeUrl: officialTrailer?.key,
-// posterUrl,
     );
     return result;
   }

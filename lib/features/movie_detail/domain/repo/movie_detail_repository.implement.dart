@@ -2,11 +2,9 @@ import 'dart:math';
 
 import '../../../../core/utils/date_utils.dart';
 import '../../../../main.dart';
-import '../../../new_home/data/remote/home_rest_api.dart';
 import '../../data/datasource/remote/movie_detail_rest_api.dart';
 import '../../data/model/movie_detail.dart';
 import '../../data/model/movie_session.dart';
-import '../../data/model/movie_video.dart';
 import '../../data/model/movie_video_response.dart';
 import 'movie_detail_repository.dart';
 
@@ -27,7 +25,6 @@ class MovieDetailRepositoryImplement extends MovieDetailRepository {
     required String movieId,
     required DateTime sessionDate,
   }) async {
-    // mock data
     final dateOnly = sessionDate.getDateOnly();
     final theaterConstanst = [
       'Thiso Mall',
@@ -37,9 +34,17 @@ class MovieDetailRepositoryImplement extends MovieDetailRepository {
       'Hùng Vương',
       'AEON Mall Tân Phú',
       'AEON Mall Bình Tân',
+      'Nam Sài Gòn'
     ];
     const refPrice = 100000;
-    final filmFormatConstants = ['3D', '4D', '3D Max', 'Vietsub', 'Lồng tiếng'];
+    final filmFormatConstants = [
+      '3D',
+      '4D',
+      '3D Max',
+      'Vietsub',
+      'Lồng tiếng',
+      'IMAX'
+    ];
 
     final result = <MovieSession>[];
     for (var i = 0; i < 20; i++) {

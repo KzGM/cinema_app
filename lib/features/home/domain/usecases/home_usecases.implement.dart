@@ -1,12 +1,11 @@
 import '../../data/models/movie.dart';
 import '../repository/home_repository.dart';
-import '../repository/home_repository.implement.dart';
-import 'home_usecase.dart';
+import 'home_usecases.dart';
 
-class NewHomeUsecasesImplement extends HomeUsecases {
+class HomeUsecasesImplement extends HomeUsecases {
   final HomeRepository repo;
 
-  NewHomeUsecasesImplement(this.repo);
+  HomeUsecasesImplement(this.repo);
   @override
   Future<List<Movie>?> getUpcomingMovies() {
     return repo.getUpcomingMovies();

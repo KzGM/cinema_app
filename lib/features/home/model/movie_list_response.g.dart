@@ -11,7 +11,7 @@ MovieListResponse _$MovieListResponseFromJson(Map<String, dynamic> json) =>
       dates: json['dates'] == null
           ? null
           : Dates.fromJson(json['dates'] as Map<String, dynamic>),
-      page: json['page'] as int?,
+      page: (json['page'] as num?)?.toInt(),
       results: (json['results'] as List<dynamic>?)
           ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList(),

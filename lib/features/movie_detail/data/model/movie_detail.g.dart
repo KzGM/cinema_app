@@ -7,7 +7,7 @@ part of 'movie_detail.dart';
 // **************************************************************************
 
 MovieDetail _$MovieDetailFromJson(Map<String, dynamic> json) => MovieDetail(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       budget: (json['budget'] as num?)?.toDouble(),
       genres: (json['genres'] as List<dynamic>?)
           ?.map((e) => Genre.fromJson(e as Map<String, dynamic>))
@@ -21,7 +21,7 @@ MovieDetail _$MovieDetailFromJson(Map<String, dynamic> json) => MovieDetail(
       revenue: (json['revenue'] as num?)?.toDouble(),
       title: json['title'] as String?,
       voteAverage: (json['vote_average'] as num?)?.toDouble(),
-      voteCount: json['vote_count'] as int?,
+      voteCount: (json['vote_count'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$MovieDetailToJson(MovieDetail instance) =>

@@ -9,9 +9,10 @@ part of 'movie.dart';
 Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
       adult: json['adult'] as bool?,
       backdropPath: json['backdrop_path'] as String?,
-      genreIds:
-          (json['genre_ids'] as List<dynamic>?)?.map((e) => e as int).toList(),
-      id: json['id'] as int?,
+      genreIds: (json['genre_ids'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      id: (json['id'] as num?)?.toInt(),
       originalLanguage: json['original_language'] as String?,
       originalTitle: json['original_title'] as String?,
       overview: json['overview'] as String?,
@@ -21,7 +22,7 @@ Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
       title: json['title'] as String?,
       video: json['video'] as bool?,
       voteAverage: (json['vote_average'] as num?)?.toDouble(),
-      voteCount: json['vote_count'] as int?,
+      voteCount: (json['vote_count'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{

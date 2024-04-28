@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_app/core/common/model/bloc_status_state.dart';
+import 'package:cinema_app/features/account/presentation/account_route.dart';
 import 'package:cinema_app/features/home/data/models/movie.dart';
 import 'package:cinema_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:cinema_app/features/home/presentation/bloc/home_event.dart';
@@ -102,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(right: 8),
             child: CustomizedButton(
               onTap: () {
-                // Navigator.pushNamed(context, AccountRoute.routeName);
+                Navigator.pushNamed(context, AccountRoute.routeName);
               },
               text: 'Profile',
             ),
